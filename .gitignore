@@ -1,5 +1,7 @@
 # Go binaries
 bin/*
+*.rpm
+scraper
 
 # Go modules
 vendor/
