@@ -21,6 +21,7 @@ var records []SearchRecord
 
 func Scrape() {
 	// TESTTING GIT HOOK BIPPITY BOPPITY
+	// testing the hook again
 	browser := rod.New().MustConnect()
 	defer browser.MustClose()
 
