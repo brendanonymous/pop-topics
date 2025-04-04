@@ -1,8 +1,6 @@
 package scraper
 
 import (
-	"encoding/json"
-	"log"
 	"strings"
 	"time"
 
@@ -19,7 +17,7 @@ const URL string = "https://trends.google.com/trending?geo=US&hours=168&sort=sea
 
 var records []SearchRecord
 
-func Scrape() {
+func Scrape() []SearchRecord {
 	browser := rod.New().MustConnect()
 	defer browser.MustClose()
 
@@ -43,10 +41,5 @@ func Scrape() {
 		}
 	}
 
-	resp, err := json.Marshal(records)
-	if err != nil {
-		panic("at the disco")
-	}
-
-	log.Println(string(resp))
+	return records
 }
