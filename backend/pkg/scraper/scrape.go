@@ -20,9 +20,6 @@ const URL string = "https://trends.google.com/trending?geo=US&hours=168&sort=sea
 var records []SearchRecord
 
 func Scrape() {
-	// TESTTING GIT HOOK BIPPITY BOPPITY
-	// testing the hook again
-	// more testing
 	browser := rod.New().MustConnect()
 	defer browser.MustClose()
 
