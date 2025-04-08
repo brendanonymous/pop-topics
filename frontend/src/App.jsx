@@ -1,21 +1,22 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import Bubble from './components/Bubble'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const bubbles = Array.from({length: 10}, (_, i) => (
+    <Bubble title={"da g kitty"} size={"85"} />
+  ));
 
   return (
     <>
       <div className='container'>
         <h1>Hello, world</h1>
         <div className='bubbles'>
-          <Bubble title={"da g kitty"} size={"85"}></Bubble>
+          {bubbles}
         </div>
       </div>
     </>
   )
 }
 
-export default App
+export default App;
