@@ -13,6 +13,7 @@ func main() {
 }
 
 func SetupRouter() *gin.Engine {
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	weeklyTrendsHandler := weekly_trends_handlers.NewWeeklyTrendsHandler()
 
