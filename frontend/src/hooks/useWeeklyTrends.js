@@ -2,14 +2,14 @@ import { useState, useEffect } from "react"
 import { fetchWeeklyTrends } from "../api/weeklyTrends"
 
 export const useWeeklyTrends = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const trends = await fetchWeeklyTrends();
-                
+
                 console.log('Fetched trends: ', trends);
                 setData(trends);
             } catch (err) {

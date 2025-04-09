@@ -9,7 +9,6 @@ function App() {
     return <div>oh, we got BIG problems: {error.message}</div>;
   }
 
-
   const bubbles = data ? (data.map((trend, idx) => (
     <Bubble key={idx} title={trend.terms} size={"85"} />
   ))) : <p>Loading...........</p>;
