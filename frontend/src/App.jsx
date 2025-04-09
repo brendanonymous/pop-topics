@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import Bubble from './components/Bubble'
 import './App.css'
+import { useWeeklyTrends } from './hooks/useWeeklyTrends';
 
 function App() {
-  const bubbles = Array.from({length: 10}, (_, i) => (
-    <Bubble title={"da g kitty"} size={"85"} />
-  ));
+  const { data, error } = useWeeklyTrends();
+  if (error) {
+    return <div>oh, we got BIG problems: {error.message}</div>;
+  }
+
+
+  const bubbles = data ? (data.map((trend, idx) => (
+    <Bubble key={idx} title={trend.terms} size={"85"} />
+  ))) : <p>Loading...........</p>;
 
   return (
     <>
