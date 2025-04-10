@@ -1,4 +1,5 @@
 function Bubble( { title, size } ){
+    const fontSize = size * 0.1;
     return (
         <div style={{ 
             background: 'skyblue', 
@@ -6,6 +7,7 @@ function Bubble( { title, size } ){
             height: `${size}px`, 
             WebkitBorderRadius: '100%', 
             borderRadius: '100%',
+            fontSize: `${fontSize}px`,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

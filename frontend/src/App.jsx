@@ -2,23 +2,20 @@ import { useState } from 'react'
 import Bubble from './components/Bubble'
 import './App.css'
 import { useWeeklyTrends } from './hooks/useWeeklyTrends';
+import { normalizeTrendVolume } from './util/utils';
+import BubbleLayout from './components/BubbleLayout';
 
 function App() {
-  const { data, error } = useWeeklyTrends();
+  const { data: trends, error } = useWeeklyTrends();
   if (error) {
     return <div>oh, we got BIG problems: {error.message}</div>;
   }
 
-  const bubbles = data ? (data.map((trend, idx) => (
-    <Bubble key={idx} title={trend.terms} size={"85"} />
-  ))) : <p>Loading...........</p>;
-
   return (
     <>
       <div className='container'>
-        <h1>Hello, world</h1>
         <div className='bubbles'>
-          {bubbles}
+          {trends ? <BubbleLayout data={trends} /> : <p>Loading....</p>}
         </div>
       </div>
     </>
