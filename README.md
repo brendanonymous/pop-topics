@@ -1,5 +1,3 @@
-WIP
-
 TODO:
 
 - [x] write golang scraper logic
@@ -17,3 +15,4 @@ TODO:
   - [x] find sizing formula for bubbles depending on search volume and growth
   - [x] use physics library to animate bubbles
   - [ ] magnify bubbles on mouse hover
+  - [ ] reduce server load - create a client-side cache (json file) to store data, use timestamp, if 12 hours has passed, get new data and store in json
