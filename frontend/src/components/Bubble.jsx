@@ -1,7 +1,7 @@
-function Bubble( { title, size } ){
-    const fontSize = size * 0.1;
+function Bubble( { className, title, size } ){
+    const fontSize = size * 0.12;
     return (
-        <div style={{ 
+        <div className={className} style={{ 
             background: 'skyblue', 
             width: `${size}px`, 
             height: `${size}px`, 
@@ -12,7 +12,7 @@ function Bubble( { title, size } ){
             justifyContent: 'center',
             alignItems: 'center',
             fontWeight: 'bold',
-            color: 'white'
+            color: 'black'
         }}>{ title }</div>
     );
 }

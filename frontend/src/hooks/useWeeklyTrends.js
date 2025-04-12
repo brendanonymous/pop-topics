@@ -26,12 +26,14 @@ export const useWeeklyTrends = () => {
             }
         };
 
-        // check cached data timestamp, if duration passed, fetch, else setData with the cached data
-        const cached = localStorage.getItem(CACHE_KEY);
+        // check cached data timestamp, if passed expiry, fetch, else setData with the cached data
+        const cachedTrends = localStorage.getItem(CACHE_KEY);
         const cachedTime = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
-        if (cached && cachedTime && (Date.now() - cachedTime < CACHE_EXPIRY)) {
-            setData(JSON.parse(cached));
+        if (cachedTrends && cachedTime && (Date.now() - cachedTime < CACHE_EXPIRY)) {
+            console.log('using cached trends');
+
+            setData(JSON.parse(cachedTrends));
         } else {
             fetchData();
         }
