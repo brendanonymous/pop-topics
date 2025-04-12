@@ -15,6 +15,9 @@ const BubbleLayout = ({ data: trends }) => {
       y: Math.random() * 400,
     }));
 
+    // DEBUG: 
+    initialNodes.forEach((node) => console.log("node size: " + node.size));
+
     const simulation = forceSimulation(initialNodes)
       .force('charge', forceManyBody().strength(5))
       .force('center', forceCenter(400 / 2, 400 / 2)) // adjust size to your container
@@ -35,7 +38,7 @@ const BubbleLayout = ({ data: trends }) => {
           top: node.y,
           transform: `translate(-50%, -50%)`,
         }}>
-          <Bubble title={node.title} size={node.size} />
+          <Bubble className="bubble" title={node.title} size={node.size} />
         </div>
       ))}
     </div>
