@@ -13,9 +13,10 @@ TODO:
   - [x] write fetch call and dynamically create components from json
   - [x] find sizing formula for bubbles depending on search volume and growth
   - [x] use physics library to animate bubbles
-  - [ ] magnify bubbles on mouse hover
-    - [ ] add smooth magnification animation
-    - [ ] add rigid body so each bubble shoves other bubbles out of the way (is this worth it?)
+  - [ ] magnify bubbles on mouse hover (framer motion)
+    - [x] add smooth magnification animation
+    - [ ] ~~add rigid body so each bubble shoves other bubbles out of the way (is this worth it?)~~
+    - [x] overlap other bubbles on magnification
     - [ ] set a max magnification level
   - [ ] create clickable links on each bubble
     - [ ] just reroute to a google search, hope this is easy

@@ -1,1 +1,1 @@
-This the frontend, how u doin shordy
+This da frontend, how u doin shordy
