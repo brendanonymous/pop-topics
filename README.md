@@ -17,8 +17,9 @@ TODO:
     - [x] add smooth magnification animation
     - [ ] ~~add rigid body so each bubble shoves other bubbles out of the way (is this worth it?)~~
     - [x] overlap other bubbles on magnification
-    - [ ] set a max magnification level
-  - [ ] create clickable links on each bubble
-    - [ ] just reroute to a google search, hope this is easy
+    - [x] normalize magnification size based on bubble size
+  - [x] create clickable links on each bubble
+    - [x] just format a google search
   - [x] reduce server load - create a client-side cache (local storage) to store data, use timestamp, if 24 hours has passed, get new data and store in cache
     - [x] test
+- [ ] DEPLOY BABY LETS GOOOOOOO

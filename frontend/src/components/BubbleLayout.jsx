@@ -12,10 +12,13 @@ const BubbleLayout = ({ data: trends }) => {
     const initialNodes = trends.map((trend, idx) => ({
       id: idx,
       title: trend.terms,
-      size: normalizeTrendVolume(trend.volume) * 5,
+      size: normalizeTrendVolume(trend.volume) * 6,
       x: Math.random() * 400,
       y: Math.random() * 400,
     }));
+
+    // DEBUG: 
+    initialNodes.forEach((node) => console.log("node size: " + node.size));
 
     const simulation = forceSimulation(initialNodes)
       .force('charge', forceManyBody().strength(5))
