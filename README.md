@@ -21,3 +21,4 @@ TODO:
     - [x] just format a google search
   - [x] reduce server load - create a client-side cache (local storage) to store data, use timestamp, if 24 hours has passed, get new data and store in cache
     - [x] test
+- [ ] DEPLOY BABY LETS GOOOOOOO

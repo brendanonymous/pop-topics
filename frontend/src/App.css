@@ -9,7 +9,3 @@
   text-align: center;
   padding: 2rem;
 }
-
-.bubble:hover {
-  transform: scale(1.5);
-}
