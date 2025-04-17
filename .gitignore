@@ -1,0 +1,30 @@
+# go binaries
+bin/*
+*.rpm
+scraper
+
+# go modules
+vendor/
+go.sum
+
+# react builds
+build/
+
+# node modules
+node_modules/
+
+# logs
+*.log
+
+# editor and IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+
+# system files
+.DS_Store
+
+# env files
+.env
