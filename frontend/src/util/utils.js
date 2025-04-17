@@ -13,5 +13,18 @@ export function normalizeTrendVolume(str) {
     }
   }
 
+export function normalizeScaleSize(bubbleSize) {
+  if (bubbleSize >= 100) {
+    return 2
+  }
+  else if (bubbleSize >= 60) {
+    return 3
+  }
+  else {
+    return 4;
+  }
+}
 
-  
+export function formatSearchQuery(query) {
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+}
