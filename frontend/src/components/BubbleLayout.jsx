@@ -12,7 +12,7 @@ const BubbleLayout = ({ data: trends }) => {
     const initialNodes = trends.map((trend, idx) => ({
       id: idx,
       title: trend.terms,
-      size: normalizeTrendVolume(trend.volume) * 6,
+      size: normalizeTrendVolume(trend.volume) * 8,
       x: Math.random() * 400,
       y: Math.random() * 400,
     }));
