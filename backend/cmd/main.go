@@ -29,7 +29,7 @@ func SetupRouter() *gin.Engine {
 	)
 	weeklyTrendsHandler := weekly_trends_handlers.NewWeeklyTrendsHandler()
 
-	router.GET("/api/weekly_trends", weeklyTrendsHandler.Get)
+	router.GET("/weekly_trends", weeklyTrendsHandler.Get)
 
 	return router
 }
