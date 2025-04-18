@@ -1,6 +1,6 @@
 // weeklyTrends.js
 
-const URL = 'http://ec2-54-227-64-22.compute-1.amazonaws.com/api/weekly_trends';
+const URL = import.meta.env.VITE_API_URL;
 
 export const fetchWeeklyTrends = async () => {
   const response = await fetch(URL);
