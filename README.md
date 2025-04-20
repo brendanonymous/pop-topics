@@ -21,7 +21,9 @@ TODO:
     - [x] just format a google search
   - [x] reduce server load - create a client-side cache (local storage) to store data, use timestamp, if 24 hours has passed, get new data and store in cache
     - [x] test
-- [ ] DEPLOY BABY LETS GOOOOOOO
-  - [ ] fix mixed content error
-    - [ ] set up domain name
-    - [ ] add certbot?
+    - [ ] fix tiny bubbles in prod instance
+- [x] DEPLOY BABY LETS GOOOOOOO
+  - [x] fix mixed content error
+    - [x] set up domain name
+    - [x] add certbot
+    - [x] reconfig nginx
