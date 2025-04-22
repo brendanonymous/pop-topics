@@ -3,7 +3,7 @@ import { normalizeScaleSize, formatSearchQuery } from '../util/utils';
 
 function Bubble({ id, title, size, style = {}, isHovered, setHoveredId, hoverLocked }) {
   // font size is scaled in correlation to the bubble size
-  const fontSize = size * 0.08;
+  const fontSize = size * 0.06;
 
   return (
     <a href={formatSearchQuery(title)} target="_blank" rel="noopener noreferrer">
@@ -36,7 +36,7 @@ function Bubble({ id, title, size, style = {}, isHovered, setHoveredId, hoverLoc
           width: `${size}px`,
           height: `${size}px`,
           fontSize: `${fontSize}px`,
-          
+          wordWrap: 'break-word',
           background: 'skyblue',
           borderRadius: '100%',
           boxShadow: isHovered ? '1px 1px 10px 1px grey' : 'none',

@@ -18,10 +18,10 @@ export function normalizeScaleSize(bubbleSize) {
     return 2
   }
   else if (bubbleSize >= 60) {
-    return 3
+    return 4
   }
   else {
-    return 4;
+    return 8;
   }
 }
 
