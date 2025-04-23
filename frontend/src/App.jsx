@@ -6,7 +6,7 @@ import { normalizeTrendVolume } from './util/utils';
 import BubbleLayout from './components/BubbleLayout';
 
 function App() {
-  const { data: trends, error } = useWeeklyTrends();
+  const { data: trends, error, loading } = useWeeklyTrends();
   if (error) {
     return <div>oh, we got BIG problems: {error.message}</div>;
   }
@@ -15,7 +15,7 @@ function App() {
     <>
       <div className='container'>
         <div className='bubbles'>
-          {trends ? <BubbleLayout data={trends} /> : <p>Loading....</p>}
+          {loading ? <p>Loading....</p> : <BubbleLayout data={trends} /> }
         </div>
       </div>
     </>

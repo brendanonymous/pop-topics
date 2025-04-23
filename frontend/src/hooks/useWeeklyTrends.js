@@ -4,6 +4,8 @@ import { fetchWeeklyTrends } from "../api/weeklyTrends"
 export const useWeeklyTrends = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     const CACHE_KEY = 'trends_cache';
     const CACHE_TIMESTAMP_KEY = 'trends_cache_timestamp';
     const CACHE_EXPIRY = 1000 * 60 * 60 * 24; // 24 hours
@@ -11,6 +13,7 @@ export const useWeeklyTrends = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setLoading(true);
                 const trends = await fetchWeeklyTrends();
 
                 // cache new data
@@ -23,6 +26,8 @@ export const useWeeklyTrends = () => {
             } catch (err) {
                 console.error('Failed to fetch trends: ', err);
                 setError(err);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -34,10 +39,11 @@ export const useWeeklyTrends = () => {
             console.log('using cached trends');
 
             setData(JSON.parse(cachedTrends));
+            setLoading(false);
         } else {
             fetchData();
         }
     }, [])
 
-    return { data, error }
+    return { data, error, loading }
 };
