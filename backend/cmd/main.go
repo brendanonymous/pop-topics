@@ -23,6 +23,7 @@ func SetupRouter() *gin.Engine {
 			AllowMethods:     []string{"GET", "OPTIONS"},
 			AllowHeaders:     []string{"Origin", "Content-Type"},
 			ExposeHeaders:    []string{"Content-Length"},
+			AllowOrigins:     []string{"*"},
 			AllowCredentials: true,
 			MaxAge:           12 * time.Hour,
 		}),
