@@ -27,7 +27,7 @@ function App() {
 
         <main style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div className='container'>
-            <div className='bubbles' style={{position: 'relative', width: '100%', height: '100%', border:'2px dashed red', overflow: 'visible' }}>
+            <div className='bubbles' style={{position: 'relative', width: '100%', height: '100%'}}>
               {loading ? <p>Loading....</p> : <BubbleLayout data={trends} /> }
             </div>
           </div>

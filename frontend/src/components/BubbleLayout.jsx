@@ -8,8 +8,8 @@ const BubbleLayout = ({ data: trends }) => {
   const [hoveredId, setHoveredId] = useState(null);
 
   const containerRef = useRef();
-  const [width, setWidth] = useState(800);
-  const [height, setHeight] = useState(450);
+  const [width, setWidth] = useState(1100);
+  const [height, setHeight] = useState(400);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -32,8 +32,8 @@ const BubbleLayout = ({ data: trends }) => {
     // initialNodes.forEach((node) => console.log("node size: " + node.size));
 
     const simulation = forceSimulation(initialNodes)
-      .force('charge', forceManyBody().strength(5))
-      .force('center', forceCenter(width / 2, height / 2))
+      .force('charge', forceManyBody().strength(-10))
+      .force('center', forceCenter(width / 2, (height / 2) + 30))
       .force('collision', forceCollide().radius(d => d.size / 2))
       .force('x', forceX(width / 2).strength(0.01))
       .force('y', forceY(height / 2).strength(0.01))
