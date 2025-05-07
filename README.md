@@ -28,5 +28,6 @@ TODO:
     - [x] set up domain name
     - [x] add certbot
     - [x] reconfig nginx
-    - [x] final touches (bubble behavior, appearance, animation)
-    - [ ] load test (not necessary, but fun)
+- [ ] ET CETERA
+  - [x] final touches (bubble behavior, appearance, animation)
+  - [ ] load test (not necessary, but fun)
