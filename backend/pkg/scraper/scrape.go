@@ -26,20 +26,45 @@ func Scrape() []SearchRecord {
 
 	records := []SearchRecord{}
 
-	rows := page.MustElements("tr")
-	for _, row := range rows[2:] { // skip first 2 header rows
-		text := row.MustText()
-		data := strings.Split(text, "\n")
-		if len(data) >= 5 {
-			records = append(
-				records,
-				SearchRecord{
-					Terms:  data[1],
-					Volume: data[2],
-					Growth: data[4],
-				})
+	rows := page.MustElements(`tr[role="row"]`)
+	for _, row := range rows {
+		termElement, err := row.Element(`td:nth-child(2) .mZ3RIc`)
+		if err != nil {
+			continue
 		}
-	}
+		volumeElement, err := row.Element(`td:nth-child(3) .lqv0Cb`)
+		if err != nil {
+			// Google sometimes renders the count only in the volume cell's text.
+			volumeElement, err = row.Element(`td:nth-child(3)`)
+			if err != nil {
+				continue
+			}
+		}
+		growthElement, _ := row.Element(`td:nth-child(3) .TXt85b`)
 
+		term, err := termElement.Text()
+		if err != nil {
+			continue
+		}
+		volume, err := volumeElement.Text()
+		if err != nil {
+			continue
+		}
+		volume = strings.TrimSpace(strings.Split(volume, "\n")[0])
+		if volume == "" || strings.Contains(strings.ToLower(volume), "arrow") {
+			continue
+		}
+
+		growth := ""
+		if growthElement != nil {
+			growth, _ = growthElement.Text()
+		}
+
+		records = append(records, SearchRecord{
+			Terms:  strings.TrimSpace(term),
+			Volume: strings.TrimSpace(volume),
+			Growth: strings.TrimSpace(strings.TrimPrefix(growth, "arrow_upward")),
+		})
+	}
 	return records
 }

@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react"
 import { fetchWeeklyTrends } from "../api/weeklyTrends"
+import { parseTrendVolume } from "../util/utils"
+
+const CACHE_EXPIRY = 1000 * 60 * 60 * 24; // 24 hours
 
 export const useWeeklyTrends = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const CACHE_KEY = 'trends_cache';
+    const CACHE_KEY = 'trends_cache_v2';
     const CACHE_TIMESTAMP_KEY = 'trends_cache_timestamp';
-    const CACHE_EXPIRY = 1000 * 60 * 60 * 24; // 24 hours
-
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
                 const trends = await fetchWeeklyTrends();
+                if (!Array.isArray(trends) || trends.length === 0 || trends.some((trend) => parseTrendVolume(trend.volume) === null)) {
+                    throw new Error('Weekly trends response is missing valid search-volume values');
+                }
 
                 // cache new data
                 localStorage.setItem(CACHE_KEY, JSON.stringify(trends));
@@ -35,10 +39,18 @@ export const useWeeklyTrends = () => {
         const cachedTrends = localStorage.getItem(CACHE_KEY);
         const cachedTime = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
-        if (cachedTrends && cachedTime && (Date.now() - cachedTime < CACHE_EXPIRY)) {
-            console.log('using cached trends');
+        let cachedData;
+        try {
+            cachedData = cachedTrends ? JSON.parse(cachedTrends) : null;
+        } catch {
+            cachedData = null;
+        }
 
-            setData(JSON.parse(cachedTrends));
+        const cacheIsValid = Array.isArray(cachedData) && cachedData.length > 0 &&
+            cachedData.every((trend) => parseTrendVolume(trend.volume) !== null);
+
+        if (cacheIsValid && cachedTime && (Date.now() - Number(cachedTime) < CACHE_EXPIRY)) {
+            setData(cachedData);
             setLoading(false);
         } else {
             fetchData();
