@@ -1,8 +1,11 @@
 package main
 
 import (
-	weekly_trends_handlers "scraper/pkg/rest/handlers/weekly_trends"
+	"log"
 	"time"
+
+	weekly_trends_handlers "scraper/pkg/rest/handlers/weekly_trends"
+	"scraper/pkg/trends"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -27,7 +30,14 @@ func SetupRouter() *gin.Engine {
 			MaxAge:           12 * time.Hour,
 		}),
 	)
-	weeklyTrendsHandler := weekly_trends_handlers.NewWeeklyTrendsHandler()
+
+	trendsService := trends.NewService()
+	if err := trendsService.Refresh(); err != nil {
+		log.Printf("initial weekly trends warmup failed: %v", err)
+	}
+	trendsService.StartBackgroundRefresh(7*24*time.Hour, 30*time.Minute)
+
+	weeklyTrendsHandler := weekly_trends_handlers.NewWeeklyTrendsHandler(trendsService)
 
 	router.GET("/weekly_trends", weeklyTrendsHandler.Get)
 
